@@ -4,7 +4,9 @@ Part 1:
 The apt update command will update the package lists to reflect the latest available versions of the software in the repositories. The apt upgrade command will then upgrade all of the installed packages to their latest versions.<pre><code>sudo apt update && sudo apt upgrade</pre></code>
 
 Part 2:
-
+<img src="images/6.png" width="800" />
+I used <pre><code>hjmk</pre></code>
+to move around. I used <pre><code>a</pre></code>to append the 1 to 0 and V to C
 Part 3:
 <pre><code>journalctl -b -p warning -o json-pretty</pre></code>
 I used
@@ -21,6 +23,8 @@ Finally I searched
 and found output field command
 
 Part 4:
+
+File Path: /etc/systemd/system/find_users.sh
 <pre><code>#!/bin/bash
 
 # Output the currently logged-in user to the /etc/motd file
@@ -39,6 +43,7 @@ done
 </pre></code>
 
 Part 5:
+File Path: /etc/systemd/system/find_users.service
 <pre><code>
 [Unit]
 Description=User Info Service
@@ -54,10 +59,10 @@ WantedBy=multi-user.target
 
 Part 6:
 Timer Unit file
-File Path: /etc/systemd/system/motd.timer
+File Path: /etc/systemd/system/find_users.timer
 <pre><code>
 [Unit]
-Description=Run motd.service one minute after boot and every day thereafter
+Description=User Info Timer
 
 [Timer]
 OnBootSec=1min
@@ -65,8 +70,9 @@ OnUnitActiveSec=1day
 
 [Install]
 WantedBy=timers.target
-EO
 </pre></code>
+<img src="images/5.png" width="800" />
+
 
 
 
