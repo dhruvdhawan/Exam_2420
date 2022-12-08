@@ -5,8 +5,11 @@ The apt update command will update the package lists to reflect the latest avail
 
 Part 2:
 <img src="images/6.png" width="800" />
-I used <pre><code>hjmk</pre></code>
+I used <pre><code>h,j,m,k,gj,gk</pre></code>
 to move around. I used <pre><code>a</pre></code>to append the 1 to 0 and V to C
+<pre><code>cw</pre></code>
+to change the word numbs to digit
+
 Part 3:
 <pre><code>journalctl -b -p warning -o json-pretty</pre></code>
 I used
