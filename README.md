@@ -22,39 +22,36 @@ and found output field command
 
 Part 4:
 <pre><code>#!/bin/bash
-#!/bin/bash
 
-# Find all users with a UID between 1000 and 5000
-users=$(awk -F: '$3 >= 1000 && $3 <= 5000 {print $1}' /etc/passwd)
+# Output the currently logged-in user to the /etc/motd file
+echo "Currently logged in user: $(whoami)" > /etc/motd
 
-# Get the current user
-current_user=$(whoami)
-
-# Create the message to write to the /etc/motd file
-message="Regular users:\n"
-for user in $users; do
+# Loop through all users with a UID between 1000 and 5000
+for user in $(awk -F: '$3 >= 1000 && $3 <= 5000 {print $1}' /etc/passwd); do
+  # Get the user's UID and shell
+  uid=$(id -u $user)
   shell=$(grep "^$user:" /etc/passwd | cut -d: -f7)
-  uid=$(grep "^$user:" /etc/passwd | cut -d: -f3)
-  message="$message - $user (UID: $uid): $shell\n"
-done
-message="$message\nCurrently logged in user: $current_user"
 
-# Write the message to the /etc/motd file
-echo -e "$message" > /etc/motd
+  # Output the user's information to the /etc/motd file
+  echo "User: $user, UID: $uid, Shell: $shell" >> /etc/motd
+done
 
 </pre></code>
 
 Part 5:
 <pre><code>
 [Unit]
-Description=Run my script from Part 4
+Description=User Info Service
+
 [Service]
 Type=simple
-ExecStart=/bin/bash /scripts/find_users.sh
+ExecStart=/etc/systemd/system/find_users.sh
 
 [Install]
 WantedBy=multi-user.target
 </pre></code>
+<img src="images/4.png" width="800" />
+
 Part 6:
 Timer Unit file
 File Path: /etc/systemd/system/motd.timer
