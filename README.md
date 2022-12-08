@@ -11,6 +11,7 @@ to move around. I used <pre><code>a</pre></code>to append the 1 to 0 and V to C
 to change the word numbs to digit
 
 Part 3:
+<img src="images/7.png" width="800" />
 <pre><code>journalctl -b -p warning -o json-pretty</pre></code>
 I used
 <pre><code>/-b</pre></code>
